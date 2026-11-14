@@ -1,0 +1,168 @@
+%% CV tieng Viet - Pham Linh Quan (baseline)
+%% Comprehensive overview of all competencies, experience, and achievements.
+%% Use as a master reference when tailoring role-specific CVs.
+%%
+%% Compile with: lualatex main_example.tex
+%% (pdflatex often fails on modern MiKTeX with fontawesome5 font-expansion errors.)
+
+\documentclass[11pt,a4paper,sans]{moderncv}
+\moderncvstyle{banking}
+\moderncvcolor{blue}
+
+% Force the name and section headings to render in moderncv blue (color1).
+% Default banking leaves them black: moderncvstylebanking.sty's \colorlet
+% copies (not aliases) the pre-scheme accent colour, so the name colours are
+% frozen before \moderncvcolor runs. Re-let them after. \namefont is the hook
+% every name-style macro routes through, so this also works on moderncv 2.3.1
+% (Debian/Ubuntu apt), which has no \firstnamestyle/\lastnamestyle at all.
+\renewcommand*{\namefont}{\fontsize{34}{36}\bfseries\upshape}
+\colorlet{firstnamecolor}{color1}
+\colorlet{lastnamecolor}{color1}
+\colorlet{namecolor}{color1}
+\renewcommand*{\sectionstyle}[1]{{\sectionfont\color{color1}#1}}
+
+\usepackage[utf8]{inputenc}
+% pdflatex fallback only (the documented engine is lualatex, which skips this
+% branch). Without T1 font encoding pdflatex builds accented letters with
+% \accent, and the PDF text layer stores them decomposed - `e` + U+0300 rather
+% than U+00E8 - so an ATS keyword match on "Genève" fails while the page looks
+% right. moderncv 2.5 loads T1 itself under pdflatex; 2.3.1 (Debian/Ubuntu apt)
+% does not. \ifpdftex comes from iftex, which every moderncv version loads.
+\ifpdftex\usepackage[T1]{fontenc}\fi
+% moderncv loads hyperref itself in an \AtEndPreamble hook, so \hypersetup
+% must go in an \AtEndPreamble of our own: on moderncv < 2.4 a top-level
+% \usepackage{hyperref} clashes with the class's own
+% \RequirePackage[unicode]{hyperref}. From 2.4.0 the class passes its options
+% through \PassOptionsToPackage instead, which is what removes that clash.
+\AtEndPreamble{\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=blue,
+    pdftitle={Phạm Linh Quân - CV},
+    % Keep pdfpagemode=UseNone: this block runs after moderncv's own
+    % \AtEndPreamble (moderncv.cls sets pdfpagemode there), so a FullScreen
+    % value here would win and open every CV in fullscreen presentation mode.
+    pdfpagemode=UseNone,
+}}
+\usepackage[scale=0.80]{geometry}
+\usepackage{import}
+\usepackage{needspace}
+
+% personal data
+\name{Phạm Linh}{Quân}
+\address{Đà Nẵng, Việt Nam (làm việc từ xa)}{}{}
+\phone[mobile]{0333 512 771}
+\email{phamlinhquan270403@gmail.com}
+\extrainfo{\href{https://www.youtube.com/@Beatframe999}{youtube.com/@Beatframe999}, \href{https://www.instagram.com/27_aprjl/}{instagram.com/27\_aprjl}}
+
+\begin{document}
+
+\makecvtitle
+
+% ============================================================
+%     GIOI THIEU BAN THAN
+% ============================================================
+
+\vspace{6pt}
+\small{Video editor với 3 năm kinh nghiệm dựng video YouTube và video ngắn, đồng thời là người sáng lập BeatFrame, kênh giải trí âm nhạc tiếng Anh tôi tự xây dựng từ con số 0 lên 26K người đăng ký và 29,2 triệu lượt xem (video cao nhất: 9,9 triệu lượt xem). Tôi tự làm toàn bộ quy trình, từ ý tưởng, kể chuyện đến dựng, lồng tiếng, thiết kế âm thanh, phụ đề và motion graphics trên Adobe Premiere Pro và After Effects. Tôi từng dựng Reels cho các thương hiệu cá nhân tại Mỹ và hoàn thành hơn 10 video mỗi tuần trong môi trường sản xuất số lượng lớn. Tôi đang tìm vị trí làm việc từ xa, nơi giữ chân người xem và sản lượng ổn định được coi trọng.}
+
+% ============================================================
+%     NANG LUC COT LOI
+% ============================================================
+
+\section{Năng lực cốt lõi}
+\vspace{1pt}
+\begin{itemize}
+\item \textbf{Dựng video}: video dài trên YouTube và video ngắn Reels, TikTok, YouTube Shorts; nhịp dựng, hook và cách kể chuyện để giữ chân người xem.
+\item \textbf{Motion Graphics \& VFX}: chữ chuyển động, chuyển cảnh, hiệu ứng lửa và hạt, orbit motion, compositing trên Adobe After Effects.
+\item \textbf{Âm thanh \& phụ đề}: lồng tiếng, giọng đọc AI, hiệu ứng âm thanh, thiết kế âm thanh; phụ đề cho video mạng xã hội.
+\item \textbf{Chiến lược nội dung YouTube}: phát triển kênh tiếng Anh từ con số 0 lên 29,2 triệu lượt xem; lên ý tưởng, đóng gói nội dung, đăng đều đặn.
+\item \textbf{Sản lượng lớn}: hơn 10 video hoàn chỉnh mỗi tuần tại studio sản xuất; làm việc từ xa với agency và khách hàng Mỹ.
+\item \textbf{Phần mềm}: Adobe Premiere Pro, Adobe After Effects, CapCut, Adobe Photoshop, Adobe Illustrator, công cụ giọng đọc AI.
+\end{itemize}
+
+% ============================================================
+%     KINH NGHIEM LAM VIEC
+% ============================================================
+
+\section{Kinh nghiệm làm việc}
+\vspace{3pt}
+\begin{itemize}
+
+% --- Most Recent Role ---
+\item{\cventry{01/2025-nay}{Founder \& Video Editor}{BeatFrame (kênh YouTube)}{Từ xa}{}{\vspace{1pt}
+\begin{itemize}
+    \item {Xây dựng kênh giải trí rap và âm nhạc bằng tiếng Anh từ con số 0 lên 26K người đăng ký và 29,2 triệu lượt xem với 181 video.}
+    \item {Các video nổi bật đạt 9,9 triệu, 4 triệu và 813K lượt xem, nội dung tiếng Anh hướng tới khán giả quốc tế.}
+    \item {Tự làm toàn bộ quy trình sản xuất: ý tưởng, kịch bản và kể chuyện, dựng, lồng tiếng, hiệu ứng âm thanh, phụ đề.}
+    \item {Dựng trên Adobe Premiere Pro, làm motion graphics và hiệu ứng trên Adobe After Effects.}
+\end{itemize}}}
+
+\vspace{3pt}
+
+% --- Previous Role ---
+\item{\cventry{2024-2025}{Freelance Video Editor}{Agency sáng tạo (khách hàng Mỹ)}{Từ xa}{}{\vspace{1pt}
+\begin{itemize}
+    \item {Dựng Instagram Reels cho các thương hiệu cá nhân (creator, coach) tại Mỹ thông qua agency.}
+    \item {Khách hàng gồm Bashiri Smith (207K người theo dõi trên Instagram, founder BASWE.Ai) và Justin Phan (founder Precision Closers).}
+\end{itemize}}}
+
+\vspace{3pt}
+
+% --- Earlier Role ---
+\item{\cventry{2023-2024}{Video Editor}{Studio sản xuất nội dung truyện}{Việt Nam}{}{\vspace{1pt}
+\begin{itemize}
+    \item {Dựng video review truyện tranh có lời dẫn bằng Adobe Premiere Pro và giọng đọc AI, hơn 10 video mỗi tuần.}
+    \item {Tham gia dựng cho Miss Review, kênh YouTube review truyện tranh với 225K người đăng ký và hơn 1.000 video.}
+    \item {Dựng thêm cho một số kênh YouTube nhỏ theo hình thức freelance.}
+\end{itemize}}}
+
+\end{itemize}
+
+% ============================================================
+%     SAN PHAM TIEU BIEU
+% ============================================================
+
+\enlargethispage{2\baselineskip}
+\section{Sản phẩm tiêu biểu}
+\vspace{1pt}
+\begin{itemize}
+\item {\textbf{BeatFrame}: \href{https://www.youtube.com/@Beatframe999}{youtube.com/@Beatframe999}}
+\item {\textbf{Miss Review} (editor): \href{https://www.youtube.com/@Missreview102}{youtube.com/@Missreview102}}
+\item {\textbf{Luyện tập motion graphics} (After Effects): \href{https://www.threads.com/@27_aprjl}{threads.com/@27\_aprjl}}
+\end{itemize}
+
+% ============================================================
+%     HOC VAN
+% ============================================================
+
+\section{Học vấn}
+\vspace{1pt}
+\begin{itemize}
+\item{\cventry{2021-2023}{Cao đẳng Thiết kế đồ họa}{FPT Polytechnic}{Việt Nam}{}{\vspace{1pt}
+Chương trình thiết kế đồ họa (Adobe Photoshop, Adobe Illustrator).
+}}
+\end{itemize}
+
+% ============================================================
+%     NGOAI NGU
+% ============================================================
+
+\section{Ngoại ngữ}
+\vspace{1pt}
+\begin{itemize}
+\item {Tiếng Việt (bản ngữ), tiếng Anh (trung cấp, dùng được trong công việc).}
+\end{itemize}
+
+% ============================================================
+%     NGUOI THAM CHIEU
+% ============================================================
+
+\section{Người tham chiếu}
+\vspace{1pt}
+\begin{itemize}
+\item{Cung cấp khi được yêu cầu.}
+\end{itemize}
+
+\end{document}

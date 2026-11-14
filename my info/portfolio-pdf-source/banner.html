@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>LinkedIn Banner</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&display=block" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1584px; height: 396px; overflow: hidden; background: #fff; }
+  body { font-family: "Inter Tight", Arial, sans-serif; color: #000; position: relative; }
+  .name { position: absolute; left: 60px; top: 46px; font-size: 16px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+  .txt { position: absolute; left: 410px; top: 46px; width: 520px; }
+  .lbl { font-size: 16px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
+  .lbl::before { content: ""; width: 11px; height: 11px; border-radius: 50%; background: #ff2a00; }
+  h1 { font-size: 58px; font-weight: 800; letter-spacing: -.045em; line-height: .98; margin-top: 18px; }
+  h1 span { color: #ff2a00; }
+  .sub { font-size: 22px; font-weight: 600; margin-top: 16px; letter-spacing: -.01em; }
+  .stats { margin-top: 30px; padding-top: 14px; border-top: 2px solid #000; font-size: 15px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+  .stats i { font-style: normal; color: #ff2a00; margin: 0 9px; }
+  .thumbs { position: absolute; right: 40px; top: 30px; display: flex; gap: 16px; }
+  .thumbs img { width: 188px; height: 334px; object-fit: cover; border-radius: 10px; display: block; }
+</style>
+</head>
+<body>
+  <div class="name">Pham Linh Quan</div>
+  <div class="txt">
+    <div class="lbl">Available for remote work</div>
+    <h1>Video Editor &amp;<br>Motion Designer<span>.</span></h1>
+    <div class="sub">YouTube · Reels · TikTok · Ads · AI video</div>
+    <div class="stats">29.2M views<i>●</i>26K subscribers<i>●</i>181 videos</div>
+  </div>
+  <div class="thumbs">
+    <img src="img/beatframe-kanye.jpg" alt="">
+    <img src="img/carplanet-01.jpg" alt="">
+    <img src="img/bashi-152.jpg" alt="">
+  </div>
+</body>
+</html>

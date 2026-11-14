@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>LinkedIn Banner Dark</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,500;0,600;0,800;1,500&display=block" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1584px; height: 396px; overflow: hidden; }
+  body { font-family: "Inter Tight", Arial, sans-serif; color: #fff; position: relative;
+         background: radial-gradient(ellipse 520px 380px at 300px 120px, #3d7bc4 0%, #173a66 45%, #0a1830 80%, #060e1d 100%); }
+  .flare { position: absolute; left: 230px; top: 60px; width: 150px; height: 150px; border-radius: 50%;
+           background: radial-gradient(circle, #fff 0%, #fff 14%, rgba(255,255,255,.75) 26%, rgba(170,210,255,.25) 50%, rgba(120,170,255,0) 72%); }
+  .ray { position: absolute; left: 305px; top: 135px; width: 900px; height: 2px; transform-origin: 0 50%;
+         background: linear-gradient(90deg, rgba(255,255,255,.55), rgba(255,255,255,0)); }
+
+  /* Editing timeline in perspective */
+  .stage { position: absolute; left: -200px; top: 95px; width: 1700px; height: 600px; perspective: 700px; }
+  .tl { position: absolute; inset: 0; transform: rotateX(52deg) rotateZ(-11deg); transform-origin: 45% 0; }
+  .track { position: absolute; left: 0; height: 46px; width: 1700px; }
+  .clip { position: absolute; top: 0; height: 46px; border-radius: 4px; border: 1px solid rgba(255,255,255,.35); }
+  .wave { position: absolute; bottom: 0; width: 3px; background: rgba(120,220,170,.55); }
+  .ruler { position: absolute; top: -26px; left: 0; width: 1500px; height: 14px;
+           background: repeating-linear-gradient(90deg, rgba(255,255,255,.45) 0 2px, transparent 2px 40px); }
+  .playhead { position: absolute; top: -40px; width: 3px; height: 520px; background: #ff3b1f; box-shadow: 0 0 14px #ff3b1f; }
+  .playhead::before { content: ""; position: absolute; top: 0; left: -8px; border-left: 9.5px solid transparent;
+                      border-right: 9.5px solid transparent; border-top: 14px solid #ff3b1f; }
+
+  .shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(6,14,29,0) 35%, rgba(6,14,29,.78) 60%, rgba(6,14,29,.92) 100%); }
+
+  .txt { position: absolute; right: 70px; top: 44px; width: 640px; }
+  h1 { font-size: 76px; font-weight: 800; letter-spacing: -.03em; line-height: 1; }
+  .role { font-size: 36px; font-style: italic; font-weight: 500; margin-top: 6px; color: #eaf2ff; }
+  .role span { color: #ff3b1f; font-style: normal; }
+  .skills { font-size: 22px; font-weight: 500; margin-top: 16px; line-height: 1.5; color: #d5e2f5; }
+  .skills b { color: #ff3b1f; font-weight: 800; margin: 0 6px; }
+  .stat { font-size: 15px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; margin-top: 18px; color: #9fb6d6; }
+  .site { position: absolute; right: 70px; bottom: 30px; font-size: 22px; font-weight: 600; display: flex; align-items: center; gap: 9px;
+          text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1.5px; }
+  .site svg { width: 22px; height: 22px; }
+</style>
+</head>
+<body>
+  <div class="stage"><div class="tl" id="tl"></div></div>
+  <div class="ray" style="transform: rotate(9deg)"></div>
+  <div class="ray" style="transform: rotate(-21deg); opacity:.6"></div>
+  <div class="ray" style="transform: rotate(32deg); opacity:.4; width:600px"></div>
+  <div class="flare"></div>
+  <div class="shade"></div>
+
+  <div class="txt">
+    <h1>Pham Linh Quan</h1>
+    <div class="role">Video Editor &amp; Motion Designer<span>.</span></div>
+    <div class="skills">Premiere Pro<b>•</b>After Effects<b>•</b>CapCut<br>YouTube<b>•</b>Reels / TikTok / Shorts<b>•</b>Ads<b>•</b>AI Video</div>
+    <div class="stat">29.2M views · 26K subscribers · built from zero</div>
+  </div>
+  <div class="site">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2c3 3.2 3 16.8 0 20M12 2c-3 3.2-3 16.8 0 20"/></svg>
+    phamlinhquan.io.vn
+  </div>
+
+<script>
+  // Deterministic pseudo-random so every render is identical.
+  let s = 7; const rnd = () => (s = (s * 9301 + 49297) % 233280) / 233280;
+  const tl = document.getElementById('tl');
+  const ruler = document.createElement('div'); ruler.className = 'ruler'; tl.appendChild(ruler);
+  const colors = ['rgba(120,150,255,.55)','rgba(170,120,255,.5)','rgba(80,200,220,.5)','rgba(255,170,90,.5)','rgba(110,210,140,.5)'];
+  for (let t = 0; t < 8; t++) {
+    const tr = document.createElement('div'); tr.className = 'track'; tr.style.top = (t * 58) + 'px'; tl.appendChild(tr);
+    if (t >= 5) {               // audio tracks: waveform
+      for (let x = 0; x < 1700; x += 7) {
+        const w = document.createElement('div'); w.className = 'wave';
+        w.style.left = x + 'px'; w.style.height = (4 + Math.abs(Math.sin(x / 37 + t)) * 30 * (0.4 + rnd())) + 'px';
+        tr.appendChild(w);
+      }
+      continue;
+    }
+    let x = rnd() * 60;
+    while (x < 1700) {
+      const w = 70 + rnd() * 220;
+      const c = document.createElement('div'); c.className = 'clip';
+      c.style.left = x + 'px'; c.style.width = w + 'px'; c.style.background = colors[(t + Math.floor(rnd() * 5)) % 5];
+      tr.appendChild(c);
+      x += w + 6 + (rnd() < .25 ? 40 + rnd() * 80 : 0);
+    }
+  }
+  const ph = document.createElement('div'); ph.className = 'playhead'; ph.style.left = '820px'; tl.appendChild(ph);
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+# Dependencies / build output
+node_modules/
+.next/
+out/
+__pycache__/
+*.pyc
+.venv/
+venv/
+tsconfig.tsbuildinfo
+
+# LaTeX build junk (PDFs are kept)
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# Secrets
+.env
+.env.*
+.claude/settings.local.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

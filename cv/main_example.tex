@@ -1,0 +1,167 @@
+%% Example CV - Pham Linh Quan
+%% Comprehensive overview of all competencies, experience, and achievements.
+%% Use as a master reference when tailoring role-specific CVs.
+%%
+%% Compile with: lualatex main_example.tex
+%% (pdflatex often fails on modern MiKTeX with fontawesome5 font-expansion errors.)
+
+\documentclass[11pt,a4paper,sans]{moderncv}
+\moderncvstyle{banking}
+\moderncvcolor{blue}
+
+% Force the name and section headings to render in moderncv blue (color1).
+% Default banking leaves them black: moderncvstylebanking.sty's \colorlet
+% copies (not aliases) the pre-scheme accent colour, so the name colours are
+% frozen before \moderncvcolor runs. Re-let them after. \namefont is the hook
+% every name-style macro routes through, so this also works on moderncv 2.3.1
+% (Debian/Ubuntu apt), which has no \firstnamestyle/\lastnamestyle at all.
+\renewcommand*{\namefont}{\fontsize{34}{36}\bfseries\upshape}
+\colorlet{firstnamecolor}{color1}
+\colorlet{lastnamecolor}{color1}
+\colorlet{namecolor}{color1}
+\renewcommand*{\sectionstyle}[1]{{\sectionfont\color{color1}#1}}
+
+\usepackage[utf8]{inputenc}
+% pdflatex fallback only (the documented engine is lualatex, which skips this
+% branch). Without T1 font encoding pdflatex builds accented letters with
+% \accent, and the PDF text layer stores them decomposed - `e` + U+0300 rather
+% than U+00E8 - so an ATS keyword match on "Genève" fails while the page looks
+% right. moderncv 2.5 loads T1 itself under pdflatex; 2.3.1 (Debian/Ubuntu apt)
+% does not. \ifpdftex comes from iftex, which every moderncv version loads.
+\ifpdftex\usepackage[T1]{fontenc}\fi
+% moderncv loads hyperref itself in an \AtEndPreamble hook, so \hypersetup
+% must go in an \AtEndPreamble of our own: on moderncv < 2.4 a top-level
+% \usepackage{hyperref} clashes with the class's own
+% \RequirePackage[unicode]{hyperref}. From 2.4.0 the class passes its options
+% through \PassOptionsToPackage instead, which is what removes that clash.
+\AtEndPreamble{\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=blue,
+    pdftitle={Pham Linh Quan - CV},
+    % Keep pdfpagemode=UseNone: this block runs after moderncv's own
+    % \AtEndPreamble (moderncv.cls sets pdfpagemode there), so a FullScreen
+    % value here would win and open every CV in fullscreen presentation mode.
+    pdfpagemode=UseNone,
+}}
+\usepackage[scale=0.80]{geometry}
+\usepackage{import}
+\usepackage{needspace}
+
+% personal data
+\name{Pham Linh}{Quan}
+\address{Da Nang, Vietnam (Remote)}{}{}
+\phone[mobile]{+84 333 512 771}
+\email{phamlinhquan270403@gmail.com}
+\extrainfo{\href{https://www.youtube.com/@Beatframe999}{youtube.com/@Beatframe999}, \href{https://www.instagram.com/27_aprjl/}{instagram.com/27\_aprjl}}
+
+\begin{document}
+
+\makecvtitle
+
+% ============================================================
+%     PROFILE STATEMENT
+% ============================================================
+
+\vspace{6pt}
+\small{Video editor with 3 years of experience in YouTube and short-form content, and the founder of BeatFrame, an English-language music entertainment channel I built from zero to 26K subscribers and 29.2M views (top video: 9.9M views). I handle the full pipeline myself, from idea and storytelling to editing, voiceover, sound design, captions and motion graphics in Adobe Premiere Pro and After Effects. I have edited Reels for US creator brands and delivered 10+ videos per week in a high-volume studio. Looking for a remote role where audience retention and consistent output matter.}
+
+% ============================================================
+%     CORE COMPETENCIES
+% ============================================================
+
+\section{Core Competencies}
+\vspace{1pt}
+\begin{itemize}
+\item \textbf{Video Editing}: long-form YouTube videos and short-form Reels, TikTok and YouTube Shorts; pacing, hooks and storytelling built for audience retention.
+\item \textbf{Motion Graphics \& VFX}: text animation, transitions, fire and particle effects, orbit motion and compositing in Adobe After Effects.
+\item \textbf{Audio \& Captions}: voiceover, AI voice, sound effects and sound design; captions and subtitles for social video.
+\item \textbf{YouTube Content Strategy}: grew an English-language channel from zero to 29.2M views; ideation, packaging and consistent publishing.
+\item \textbf{High-Volume Delivery}: 10+ finished videos per week in a production studio; remote collaboration with agency teams and US clients.
+\item \textbf{Software}: Adobe Premiere Pro, Adobe After Effects, CapCut, Adobe Photoshop, Adobe Illustrator, AI voice tools.
+\end{itemize}
+
+% ============================================================
+%     PROFESSIONAL EXPERIENCE
+% ============================================================
+
+\section{Professional Experience}
+\vspace{3pt}
+\begin{itemize}
+
+% --- Most Recent Role ---
+\item{\cventry{Jan 2025-Present}{Founder \& Video Editor}{BeatFrame (YouTube channel)}{Remote}{}{\vspace{1pt}
+\begin{itemize}
+    \item {Built an English-language rap and music entertainment channel from zero to 26K subscribers and 29.2M total views across 181 videos.}
+    \item {Top videos reached 9.9M, 4M and 813K views with English-language content made for an international audience.}
+    \item {Own the full production pipeline solo: ideas, storytelling and script, editing, voiceover, sound effects and captions.}
+    \item {Custom editing in Adobe Premiere Pro, with motion graphics and effects in Adobe After Effects.}
+\end{itemize}}}
+
+\vspace{3pt}
+
+% --- Previous Role ---
+\item{\cventry{2024-2025}{Freelance Video Editor}{Creative agency (US clients)}{Remote}{}{\vspace{1pt}
+\begin{itemize}
+    \item {Edited short-form Instagram Reels for US creator and coach brands through a creative agency.}
+    \item {Clients included Bashiri Smith (207K Instagram followers, founder of BASWE.Ai) and Justin Phan (founder of Precision Closers).}
+\end{itemize}}}
+
+\vspace{3pt}
+
+% --- Earlier Role ---
+\item{\cventry{2023-2024}{Video Editor}{Story-content studio}{Vietnam}{}{\vspace{1pt}
+\begin{itemize}
+    \item {Edited narrated comic and story review videos with Adobe Premiere Pro and AI voiceover, delivering 10+ videos per week.}
+    \item {Contributed to Miss Review, a comic-review YouTube channel with 225K subscribers and 1,000+ videos.}
+    \item {Also edited for several smaller YouTube channels on a freelance basis.}
+\end{itemize}}}
+
+\end{itemize}
+
+% ============================================================
+%     SELECTED WORK
+% ============================================================
+
+\section{Selected Work}
+\vspace{1pt}
+\begin{itemize}
+\item {\textbf{BeatFrame}: \href{https://www.youtube.com/@Beatframe999}{youtube.com/@Beatframe999}}
+\item {\textbf{Miss Review} (editor): \href{https://www.youtube.com/@Missreview102}{youtube.com/@Missreview102}}
+\item {\textbf{Motion graphics practice} (After Effects): \href{https://www.threads.com/@27_aprjl}{threads.com/@27\_aprjl}}
+\end{itemize}
+
+% ============================================================
+%     EDUCATION
+% ============================================================
+
+\section{Education}
+\vspace{1pt}
+\begin{itemize}
+\item{\cventry{2021-2023}{College Diploma in Graphic Design}{FPT Polytechnic}{Vietnam}{}{\vspace{1pt}
+Graphic design programme (Adobe Photoshop, Adobe Illustrator).
+}}
+\end{itemize}
+
+% ============================================================
+%     LANGUAGES
+% ============================================================
+
+\section{Languages}
+\vspace{1pt}
+\begin{itemize}
+\item {Vietnamese (native), English (intermediate, working proficiency).}
+\end{itemize}
+
+% ============================================================
+%     REFERENCES
+% ============================================================
+
+\section{References}
+\vspace{1pt}
+\begin{itemize}
+\item{Available upon request.}
+\end{itemize}
+
+\end{document}

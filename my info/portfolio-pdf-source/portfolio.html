@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pham Linh Quan Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=block" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 0; }
+  :root { --ink:#000; --paper:#fff; --muted:#6b6b6b; --line:#d9d9d9; --accent:#ff2a00; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--paper); color: var(--ink); }
+  body { font-family: "Inter Tight", "Helvetica Neue", Arial, sans-serif; font-size: 3.5mm; line-height: 1.4;
+         -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  a { color: inherit; text-decoration: none; }
+  .page { width: 210mm; height: 297mm; padding: 13mm 16mm 12mm; position: relative; overflow: hidden;
+          display: flex; flex-direction: column; page-break-after: always; break-after: page; }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+
+  .top { display: flex; justify-content: space-between; font-size: 2.5mm; font-weight: 600; letter-spacing: .06em;
+         text-transform: uppercase; padding-bottom: 2.5mm; border-bottom: .3mm solid var(--ink); }
+  .foot { margin-top: auto; display: flex; justify-content: space-between; font-size: 2.5mm; font-weight: 600;
+          letter-spacing: .06em; text-transform: uppercase; color: var(--muted); padding-top: 3mm; }
+  .dot { color: var(--accent); }
+  .live::before { content: ""; display: inline-block; width: 1.8mm; height: 1.8mm; border-radius: 50%;
+                  background: var(--accent); margin-right: 1.6mm; vertical-align: .1mm; }
+
+  /* Project header */
+  .phead { display: grid; grid-template-columns: 62mm 1fr; gap: 8mm; margin-top: 9mm; align-items: end; }
+  .num { color: var(--accent); font-weight: 800; font-size: 5mm; letter-spacing: -.02em; }
+  h2 { font-size: 13mm; font-weight: 800; letter-spacing: -.035em; line-height: .92; margin-top: 1mm; }
+  .meta { font-size: 2.5mm; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-top: 3mm; }
+  .desc { font-size: 3.7mm; line-height: 1.45; }
+  .desc a, .ul { text-decoration: underline; text-underline-offset: .8mm; }
+  .desc p + p { margin-top: 2mm; }
+
+  /* Video grid */
+  .grid { display: grid; gap: 6mm 5mm; margin-top: 8mm; }
+  .c3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .c4 { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 5mm 4mm; }
+  .narrow { width: 140mm; margin-left: auto; margin-right: auto; }
+  .v { display: block; }
+  .v .frame { position: relative; aspect-ratio: 9 / 16; border-radius: 1.6mm; overflow: hidden; background: #eee; }
+  .v.h .frame { aspect-ratio: 16 / 9; }
+  .v img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .play { position: absolute; left: 2mm; bottom: 2mm; width: 6.5mm; height: 6.5mm; border-radius: 50%;
+          background: rgba(255,255,255,.92); display: flex; align-items: center; justify-content: center; }
+  .play::after { content: ""; border-left: 2.2mm solid #000; border-top: 1.35mm solid transparent;
+                 border-bottom: 1.35mm solid transparent; margin-left: .5mm; }
+  .cap { display: flex; justify-content: space-between; gap: 2mm; margin-top: 1.8mm; font-size: 2.4mm; font-weight: 700;
+         letter-spacing: .05em; text-transform: uppercase; }
+  .cap span:last-child { color: var(--accent); white-space: nowrap; }
+
+  .card { border: .3mm solid var(--ink); border-radius: 1.6mm; aspect-ratio: 9 / 16; padding: 4mm; display: flex;
+          flex-direction: column; justify-content: space-between; }
+  .card b { font-size: 5mm; overflow-wrap: anywhere; font-weight: 800; letter-spacing: -.03em; line-height: 1; }
+  .card small { font-size: 2.6mm; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; }
+
+  /* Cover */
+  .cover-name { font-size: 31mm; font-weight: 800; letter-spacing: -.055em; line-height: .86; margin-top: 16mm; }
+  .cover-role { font-size: 8.5mm; font-weight: 700; letter-spacing: -.035em; margin-top: 6mm; }
+  .cover-intro { font-size: 4.3mm; line-height: 1.45; max-width: 128mm; margin-top: 5mm; }
+  .hero { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4mm; margin-top: 11mm; }
+  .ticker { margin: 9mm -16mm 0; background: var(--ink); color: var(--paper); padding: 3mm 16mm; font-size: 2.7mm;
+            font-weight: 700; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; overflow: hidden; }
+  .ticker i { font-style: normal; color: var(--accent); margin: 0 2.5mm; }
+  .contacts { display: grid; grid-template-columns: 1.25fr 1fr 1.1fr; border-top: .3mm solid var(--ink); margin-top: 7mm; }
+  .contacts > a { padding: 3mm 3mm 0 0; }
+  .contacts > a + a { padding-left: 3mm; border-left: .3mm solid var(--line); }
+  .lbl { font-size: 2.4mm; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+  .val { font-size: 3.6mm; font-weight: 700; margin-top: 1mm; }
+
+  /* BeatFrame */
+  .headline { font-size: 9mm; font-weight: 800; letter-spacing: -.045em; line-height: 1; margin-top: 9mm; }
+  .headline span { color: #9a9a9a; }
+  .headline .dot, h2 .dot { color: var(--accent); }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); border: .3mm solid var(--ink); margin-top: 7mm; }
+  .stats div { padding: 4mm; }
+  .stats div + div { border-left: .3mm solid var(--ink); }
+  .stats b { display: block; font-size: 11mm; font-weight: 800; letter-spacing: -.05em; line-height: 1; }
+  .stats small { display: block; margin-top: 2mm; font-size: 2.4mm; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+  .roles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4mm; margin-top: 6mm; }
+  .roles div { border-top: .3mm solid var(--ink); padding-top: 2mm; font-size: 3.1mm; line-height: 1.35; }
+  .roles b { display: block; font-size: 2.5mm; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 1mm; }
+
+  /* About */
+  .sec { display: grid; grid-template-columns: 42mm 1fr; gap: 6mm; border-top: .3mm solid var(--ink); padding-top: 4mm; margin-top: 7mm; }
+  .sec h3 { font-size: 2.6mm; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+  .exp { display: grid; grid-template-columns: 27mm 1fr; gap: 1mm 4mm; }
+  .exp + .exp { margin-top: 4.5mm; }
+  .exp .yr { font-size: 3mm; font-weight: 600; color: var(--muted); padding-top: .6mm; }
+  .exp b { font-size: 4.3mm; font-weight: 800; letter-spacing: -.02em; }
+  .exp .pl { font-size: 3.4mm; font-weight: 600; }
+  .exp p { font-size: 3.4mm; line-height: 1.45; margin-top: 1mm; }
+  .chips { display: flex; flex-wrap: wrap; gap: 2mm; }
+  .chips span { border: .3mm solid var(--ink); border-radius: 10mm; padding: 1.1mm 3mm; font-size: 3.1mm; font-weight: 600; }
+
+  /* Contact */
+  .big { font-size: 22mm; font-weight: 800; letter-spacing: -.055em; line-height: .9; margin-top: 30mm; }
+  .clist { margin-top: 18mm; border-top: .3mm solid var(--ink); }
+  .clist a, .clist div.row { display: grid; grid-template-columns: 40mm 1fr; padding: 4mm 0; border-bottom: .3mm solid var(--line); align-items: baseline; }
+  .clist .val { font-size: 5.2mm; margin: 0; letter-spacing: -.02em; }
+</style>
+</head>
+<body>
+
+<!-- 1. COVER -->
+<section class="page">
+  <div class="top"><span>Portfolio 2026</span><span class="live">Available for remote work</span></div>
+  <h1 class="cover-name">Pham Linh<br>Quan</h1>
+  <div class="cover-role">Video Editor &amp; Motion Designer<span class="dot">.</span></div>
+  <p class="cover-intro">I built a YouTube channel from zero to 29.2M views, doing everything myself: idea, script, edit, voiceover, sound and captions. I also edit Reels and ads for client brands in the US and UK.</p>
+  <div class="hero">
+    <a class="v" href="https://www.phamlinhquan.io.vn/#work"><div class="frame"><img src="img/beatframe-kanye.jpg" alt="BeatFrame Short"></div><div class="cap"><span>BeatFrame</span><span>YouTube</span></div></a>
+    <a class="v" href="https://www.phamlinhquan.io.vn/#work"><div class="frame"><img src="img/carplanet-04.jpg" alt="Car Planet UK Reel"></div><div class="cap"><span>Car Planet UK</span><span>Reel</span></div></a>
+    <a class="v" href="https://www.phamlinhquan.io.vn/#work"><div class="frame"><img src="img/bashi-156.jpg" alt="Bashiri Smith Reel"></div><div class="cap"><span>Bashiri Smith</span><span>Reel</span></div></a>
+    <a class="v" href="https://www.phamlinhquan.io.vn/#work"><div class="frame"><img src="img/ryse-wait.jpg" alt="Product short"></div><div class="cap"><span>Product short</span><span>Ad</span></div></a>
+  </div>
+  <div class="ticker">29.2M views<i>&#9679;</i>26K subscribers<i>&#9679;</i>Top video 9.9M<i>&#9679;</i>181 videos<i>&#9679;</i>10+ videos / week<i>&#9679;</i>Premiere Pro</div>
+  <div class="contacts">
+    <a href="mailto:phamlinhquan270403@gmail.com"><div><div class="lbl">Email</div><div class="val">phamlinhquan270403@gmail.com</div></div></a>
+    <a href="https://www.phamlinhquan.io.vn/"><div><div class="lbl">Portfolio (videos with sound)</div><div class="val">phamlinhquan.io.vn</div></div></a>
+    <a href="https://www.youtube.com/@Beatframe999"><div><div class="lbl">YouTube</div><div class="val">youtube.com/@Beatframe999</div></div></a>
+  </div>
+  <div class="foot"><span>Da Nang, Vietnam · Remote only</span><span>01 / 08</span></div>
+</section>
+
+<!-- 2. BEATFRAME -->
+<section class="page">
+  <div class="top"><span>Pham Linh Quan</span><span>Selected work · YouTube</span></div>
+  <div class="phead">
+    <div><div class="num">01</div><h2>BeatFrame</h2><div class="meta">YouTube · own channel · Jan 2025 → now</div></div>
+    <div class="desc"><p>An English-language rap and music entertainment channel for an international audience. I started it from zero and make every video on my own.</p>
+      <p><a href="https://www.youtube.com/@Beatframe999">youtube.com/@Beatframe999</a></p></div>
+  </div>
+  <div class="headline">A YouTube channel, built from zero<span class="dot">.</span> <span>Fully solo.</span></div>
+  <div class="stats">
+    <div><b>29.2M</b><small>Total views</small></div>
+    <div><b>26K</b><small>Subscribers, from zero</small></div>
+    <div><b>9.9M</b><small>Views on the top video</small></div>
+    <div><b>181</b><small>Videos, made solo</small></div>
+  </div>
+  <div class="roles">
+    <div><b>Idea &amp; script</b>Finding the moment, writing the story and the hook.</div>
+    <div><b>Edit</b>Pacing for retention in Adobe Premiere Pro.</div>
+    <div><b>Motion &amp; effects</b>Text animation and effects in After Effects.</div>
+    <div><b>Sound &amp; captions</b>Voiceover, sound effects and on-screen captions.</div>
+  </div>
+  <div class="grid c3 narrow">
+    <a class="v" href="https://www.phamlinhquan.io.vn/#work"><div class="frame"><img src="img/beatframe-eminem.jpg" alt=""><i class="play"></i></div><div class="cap"><span>01 Eminem diss</span><span>Short</span></div></a>
+    <a class="v" href="https://www.phamlinhquan.io.vn/#work"><div class="frame"><img src="img/beatframe-kanye.jpg" alt=""><i class="play"></i></div><div class="cap"><span>02 Kanye</span><span>Short</span></div></a>
+    <a class="v" href="https://www.phamlinhquan.io.vn/#work"><div class="frame"><img src="img/beatframe-travis.jpg" alt=""><i class="play"></i></div><div class="cap"><span>03 Travis Scott moment</span><span>Short</span></div></a>
+  </div>
+  <div class="foot"><span>Watch with sound: phamlinhquan.io.vn</span><span>02 / 08</span></div>
+</section>
+
+<!-- 3. CAR PLANET UK -->
+<section class="page">
+  <div class="top"><span>Pham Linh Quan</span><span>Selected work · Client Reels</span></div>
+  <div class="phead">
+    <div><div class="num">02</div><h2>Car Planet UK</h2><div class="meta">Client work · Instagram Reels · 2026</div></div>
+    <div class="desc"><p>Short-form Reels for a UK car dealer, made to show off vehicles with a fast, social-first edit: hooks, tier lists, animated captions and graphics.</p>
+      <p><a href="https://www.instagram.com/carplanetuk/">instagram.com/carplanetuk</a></p></div>
+  </div>
+  <div class="grid c3 narrow">
+    <a class="v" href="https://www.phamlinhquan.io.vn/#work"><div class="frame"><img src="img/carplanet-01.jpg" alt=""><i class="play"></i></div><div class="cap"><span>Reel 01</span><span>Client reel</span></div></a>
+    <a class="v" href="https://www.phamlinhquan.io.vn/#work"><div class="frame"><img src="img/carplanet-02.jpg" alt=""><i class="play"></i></div><div class="cap"><span>Reel 02</span><span>Client reel</span></div></a>
+    <a class="v" href="https://www.phamlinhquan.io.vn/#work"><div class="frame"><img src="img/carplanet-03.jpg" alt=""><i class="play"></i></div><div class="cap"><span>Reel 03</span><span>Client reel</span></div></a>
+    <a class="v" href="https://www.phamlinhquan.io.vn/#work"><div class="frame"><img src="img/carplanet-04.jpg" alt=""><i class="play"></i></div><div class="cap"><span>Reel 04</span><span>Client reel</span></div></a>
+    <a class="v" href="https://www.phamlinhquan.io.vn/#work"><div class="frame"><img src="img/carplanet-05.jpg" alt=""><i class="play"></i></div><div class="cap"><span>Reel 05</span><span>Client reel</span></div></a>
+    <a class="v" href="https://www.phamlinhquan.io.vn/#work"><div class="frame"><img src="img/carplanet-06.jpg" alt=""><i class="play"></i></div><div class="cap"><span>Reel 06</span><span>Client reel</span></div></a>
+  </div>
+  <div class="foot"><span>Watch with sound: phamlinhquan.io.vn</span><span>03 / 08</span></div>
+</section>
+
+<!-- 4. US CREATOR REELS -->
+<section class="page">
+  <div class="top"><span>Pham Linh Quan</span><span>Selected work · Creator brands</span></div>
+  <div class="phead">
+    <div><div class="num">03</div><h2>US creator Reels</h2><div class="meta">Instagram · via a creative agency · 2024 → 2025</div></div>
+    <div class="desc"><p>Short-form Reels for US creator and coach brands, including Bashiri Smith (207K Instagram followers, founder of BASWE.Ai) and Justin Phan (founder of Precision Closers).</p></div>
+  </div>
+  <div class="grid c3 narrow">
+    <a class="v" href="https://www.phamlinhquan.io.vn/#work"><div class="frame"><img src="img/bashi-152.jpg" alt=""><i class="play"></i></div><div class="cap"><span>01 Bashiri Smith</span><span>Reel</span></div></a>
+    <a class="v" href="https://www.phamlinhquan.io.vn/#work"><div class="frame"><img src="img/bashi-156.jpg" alt=""><i class="play"></i></div><div class="cap"><span>02 Bashiri Smith</span><span>Reel</span></div></a>
+    <a class="v" href="https://www.phamlinhquan.io.vn/#work"><div class="frame"><img src="img/nikhil-1.jpg" alt=""><i class="play"></i></div><div class="cap"><span>03 Creator reel</span><span>Reel</span></div></a>
+  </div>
+  <div class="grid narrow" style="grid-template-columns: 1fr; margin-top: 6mm; width: 130mm;">
+    <a class="v h" href="https://www.phamlinhquan.io.vn/#work"><div class="frame"><img src="img/justin-biggest-month.jpg" alt=""><i class="play"></i></div><div class="cap"><span>04 Justin Phan</span><span>Video</span></div></a>
+  </div>
+  <div class="foot"><span>Watch with sound: phamlinhquan.io.vn</span><span>04 / 08</span></div>
+</section>
+
+<!-- 5. ADS & PRODUCT SHORTS -->
+<section class="page">
+  <div class="top"><span>Pham Linh Quan</span><span>Selected work · Ads</span></div>
+  <div class="phead">
+    <div><div class="num">04</div><h2>Ads &amp; product shorts</h2><div class="meta">Client work · short-form</div></div>
+    <div class="desc"><p>Direct-response ads and product shorts, cut so the first three seconds stop the scroll and the rest carries the message.</p></div>
+  </div>
+  <div class="grid c4">
+    <a class="v" href="https://www.phamlinhquan.io.vn/#work"><div class="frame"><img src="img/archie-proof-ad.jpg" alt=""><i class="play"></i></div><div class="cap"><span>01 Proof ad</span><span>Ad</span></div></a>
+    <a class="v" href="https://www.phamlinhquan.io.vn/#work"><div class="frame"><img src="img/archie-lead-form-ad.jpg" alt=""><i class="play"></i></div><div class="cap"><span>02 Lead form ad</span><span>Ad</span></div></a>
+    <a class="v" href="https://www.phamlinhquan.io.vn/#work"><div class="frame"><img src="img/ryse-gadget.jpg" alt=""><i class="play"></i></div><div class="cap"><span>03 Coolest gadget</span><span>Product</span></div></a>
+    <a class="v" href="https://www.phamlinhquan.io.vn/#work"><div class="frame"><img src="img/ryse-8k.jpg" alt=""><i class="play"></i></div><div class="cap"><span>04 Quote me 8K</span><span>Product</span></div></a>
+    <a class="v" href="https://www.phamlinhquan.io.vn/#work"><div class="frame"><img src="img/ryse-wait.jpg" alt=""><i class="play"></i></div><div class="cap"><span>05 Wait, don't</span><span>Product</span></div></a>
+    <a class="v" href="https://www.phamlinhquan.io.vn/#work"><div class="frame"><img src="img/ryse-cost.jpg" alt=""><i class="play"></i></div><div class="cap"><span>06 Why it costs so much</span><span>Product</span></div></a>
+    <a class="v" href="https://www.phamlinhquan.io.vn/#work"><div class="frame"><img src="img/ai-ad-hook-02.jpg" alt=""><i class="play"></i></div><div class="cap"><span>07 Ad hook</span><span>AI video</span></div></a>
+    <a href="https://www.phamlinhquan.io.vn/#work"><div class="card"><small>All videos, with sound</small><b>Watch them all online<span class="dot">&nbsp;→</span></b></div></a>
+  </div>
+  <div class="foot"><span>Watch with sound: phamlinhquan.io.vn</span><span>05 / 08</span></div>
+</section>
+
+<!-- 6. AI VIDEO -->
+<section class="page">
+  <div class="top"><span>Pham Linh Quan</span><span>Selected work · AI video</span></div>
+  <div class="phead">
+    <div><div class="num">05</div><h2>AI video</h2><div class="meta">AI-generated video · Higgsfield · 2026</div></div>
+    <div class="desc"><p>AI video made with Higgsfield, from short ad hooks to longer visual storytelling pieces, finished with AI voice, captions and a standard edit.</p></div>
+  </div>
+  <div class="grid c3 narrow">
+    <a class="v" href="https://www.phamlinhquan.io.vn/#work"><div class="frame"><img src="img/ai-ad-hook-01.jpg" alt=""><i class="play"></i></div><div class="cap"><span>Ad hook 01</span><span>AI video</span></div></a>
+    <a class="v" href="https://www.phamlinhquan.io.vn/#work"><div class="frame"><img src="img/ai-mwh-16.jpg" alt=""><i class="play"></i></div><div class="cap"><span>Story 01</span><span>AI video</span></div></a>
+    <a class="v" href="https://www.phamlinhquan.io.vn/#work"><div class="frame"><img src="img/ai-mwh-17.jpg" alt=""><i class="play"></i></div><div class="cap"><span>Story 02</span><span>AI video</span></div></a>
+    <a class="v" href="https://www.phamlinhquan.io.vn/#work"><div class="frame"><img src="img/ai-mwh-18.jpg" alt=""><i class="play"></i></div><div class="cap"><span>Story 03</span><span>AI video</span></div></a>
+    <a class="v" href="https://www.phamlinhquan.io.vn/#work"><div class="frame"><img src="img/ai-mwh-19.jpg" alt=""><i class="play"></i></div><div class="cap"><span>Story 04</span><span>AI video</span></div></a>
+    <a href="https://www.phamlinhquan.io.vn/#work"><div class="card"><small>More AI work</small><b>See the full set online<span class="dot">&nbsp;→</span></b></div></a>
+  </div>
+  <div class="foot"><span>Watch with sound: phamlinhquan.io.vn</span><span>06 / 08</span></div>
+</section>
+
+<!-- 7. ABOUT -->
+<section class="page">
+  <div class="top"><span>Pham Linh Quan</span><span>About</span></div>
+  <div class="headline" style="margin-top: 12mm;">3 years of editing, from story channels to client ads<span class="dot">.</span></div>
+
+  <div class="sec">
+    <h3>Experience</h3>
+    <div>
+      <div class="exp"><div class="yr">2026 → now</div><div><b>Freelance Video Editor &amp; AI Video Creator</b><div class="pl">Independent clients · Remote</div>
+        <p>Instagram Reels for Car Planet UK, direct-response ads and product shorts, and AI video made with Higgsfield.</p></div></div>
+      <div class="exp"><div class="yr">2025 → now</div><div><b>Founder &amp; Video Editor</b><div class="pl">BeatFrame, YouTube · Remote</div>
+        <p>English-language music entertainment channel: 26K subscribers, 29.2M views, 181 videos. Top videos: 9.9M, 4M and 813K views.</p></div></div>
+      <div class="exp"><div class="yr">2024 → 2025</div><div><b>Freelance Video Editor</b><div class="pl">Creative agency, US clients · Remote</div>
+        <p>Instagram Reels for creator and coach brands, including Bashiri Smith (207K followers) and Justin Phan.</p></div></div>
+      <div class="exp"><div class="yr">2023 → 2024</div><div><b>Video Editor</b><div class="pl">Story-content studio · Vietnam</div>
+        <p>Narrated comic and story review videos for <a class="ul" href="https://www.youtube.com/@Missreview102">Miss Review</a> (225K subscribers) in Premiere Pro with AI voice. 10+ videos per week.</p></div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h3>What I do</h3>
+    <div class="chips"><span>Long-form YouTube</span><span>Reels / TikTok / Shorts</span><span>Storytelling &amp; pacing for retention</span><span>Motion graphics &amp; VFX</span><span>Voiceover &amp; sound design</span><span>Captions</span><span>Ads &amp; product video</span><span>AI video</span></div>
+  </div>
+
+  <div class="sec">
+    <h3>Tools</h3>
+    <div class="chips"><span>Premiere Pro</span><span>After Effects</span><span>CapCut</span><span>Photoshop</span><span>Illustrator</span><span>Higgsfield</span><span>AI voice tools</span></div>
+  </div>
+
+  <div class="sec">
+    <h3>Education &amp; languages</h3>
+    <div class="exp" style="grid-template-columns: 1fr;"><div><b style="font-size:3.8mm">College diploma in Graphic Design</b> <span class="pl">· FPT Polytechnic, 2021 → 2023</span>
+      <p>Vietnamese (native) · English (intermediate, working proficiency)</p></div></div>
+  </div>
+  <div class="foot"><span>Da Nang, Vietnam · Remote only</span><span>07 / 08</span></div>
+</section>
+
+<!-- 8. CONTACT -->
+<section class="page">
+  <div class="top"><span>Pham Linh Quan</span><span>Contact</span></div>
+  <div class="big">Let's make videos people finish<span class="dot">.</span></div>
+  <div class="clist">
+    <a href="mailto:phamlinhquan270403@gmail.com"><span class="lbl">Email</span><span class="val">phamlinhquan270403@gmail.com</span></a>
+    <a href="tel:+84333512771"><span class="lbl">Phone</span><span class="val">+84 333 512 771</span></a>
+    <a href="https://www.phamlinhquan.io.vn/"><span class="lbl">Portfolio</span><span class="val">phamlinhquan.io.vn</span></a>
+    <a href="https://www.linkedin.com/in/phamlinhquan-editor"><span class="lbl">LinkedIn</span><span class="val">linkedin.com/in/phamlinhquan-editor</span></a>
+    <a href="https://www.youtube.com/@Beatframe999"><span class="lbl">YouTube</span><span class="val">youtube.com/@Beatframe999</span></a>
+    <a href="https://www.instagram.com/27_aprjl/"><span class="lbl">Instagram</span><span class="val">instagram.com/27_aprjl</span></a>
+  </div>
+  <div class="foot"><span class="live" style="color:#000">Available for remote work · Da Nang, Vietnam</span><span>08 / 08</span></div>
+</section>
+
+</body>
+</html>
